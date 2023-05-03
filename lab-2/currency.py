@@ -1,6 +1,77 @@
-import abc
+from abc import ABC, abstractclassmethod
 
 
-class Current(abc.ABC):
-    _int_part = 0
-    _float_part = 0
+class Currency(ABC):
+    
+    _whole_part = 0
+    _fractional_part = 0
+
+    def __init__(self) -> None:
+        super().__init__()
+        
+    def __init__(self, value):
+        super().__init__()
+        self.set_value(value)
+
+
+    def get_value(self):
+        """Returns the value of money in self
+
+        :returns: amount of the money assigned
+        :rtype: float
+        """
+        return self._whole_part + self._fractional_part / 100
+
+    def set_value(self, value):
+        """Assigns the value to self 
+        
+        :param value: the value to be assigned
+        :type value: float
+        """
+        self._whole_part = int(value)
+        self._fractional_part = int(100 * (value - int(value)))
+
+
+    def add(self, amount):
+        """Adds money to self
+        
+        :param amount: the amont of money to be added
+        :type amount: Currency
+        """
+        self.set_value(self.get_value + amount.get_value())
+
+    def subtract(self, amount):
+        """Subtracs the given value from self
+        
+        :param amount: the amount of money to be subtracted
+        :type amount: Currency
+        """
+        self.set_value(self.get_value() - amount.get_value())
+
+    def is_equal(self, currency):
+        """Return whether the amount of money in self is the same as in the given objects 
+        
+        :param currency: the object to be compared
+        :tyme currency: Currency
+        """
+        return self.get_value() == currency.get_value()
+
+    def is_greater(self, currency):
+        """Returns whether the amount of money in self is greater than in the object
+        
+        :param currency: the object to be compared
+        :type currency: Currency
+        """
+        return self.get_value() > currency.get_value()
+
+    @abstractclassmethod
+    def print(self):
+        """Prints the object
+        
+        :post: object's value and name
+        """
+        pass
+
+
+    def __del__(self):
+        pass

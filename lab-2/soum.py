@@ -1,2 +1,2 @@
 class Soum:
-    pass
+    _name = "Soum"

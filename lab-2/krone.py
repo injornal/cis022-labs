@@ -1,4 +1,5 @@
-class Krone:
-    pass
+import currency
 
-# This is just for checking
+
+class Krone(currency):
+    _name = "Krone"
