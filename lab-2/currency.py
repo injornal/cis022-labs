@@ -6,7 +6,7 @@ class Currency(ABC):
     _whole_part = 0
     _fractional_part = 0
 
-    def __init__(self) -> None:
+    def __init__(self) -> None: # This init method will not be accessible because it is overrided by init method below
         super().__init__()
         
     def __init__(self, value):
@@ -29,7 +29,7 @@ class Currency(ABC):
         :type value: float
         """
         self._whole_part = int(value)
-        self._fractional_part = int(100 * (value - int(value)))
+        self._fractional_part = int(100 * (value - int(value))) # This should be replaced, since it will not properly show fractional part of value (Floating point error)
 
 
     def add(self, amount):
@@ -41,7 +41,7 @@ class Currency(ABC):
         self.set_value(self.get_value + amount.get_value())
 
     def subtract(self, amount):
-        """Subtracs the given value from self
+        """Subtracts the given value from self
         
         :param amount: the amount of money to be subtracted
         :type amount: Currency
@@ -52,7 +52,7 @@ class Currency(ABC):
         """Return whether the amount of money in self is the same as in the given objects 
         
         :param currency: the object to be compared
-        :tyme currency: Currency
+        :type currency: Currency
         """
         return self.get_value() == currency.get_value()
 
