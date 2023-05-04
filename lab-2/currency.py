@@ -29,7 +29,7 @@ class Currency(ABC):
         :type value: float
         """
         self._whole_part = int(value)
-        self._fractional_part = int(100 * (value - int(value))) # This should be replaced, since it will not properly show fractional part of value (Floating point error)
+        self._fractional_part = int(100 * value - 100 * int(value))
 
 
     def add(self, amount):
