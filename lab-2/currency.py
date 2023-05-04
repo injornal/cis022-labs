@@ -1,3 +1,9 @@
+"""
+LAB 2
+Kostiantyn Babich, Hyunjong Shin
+This assignment is to make a base class and derived classes and use them to perform several operations
+"""
+
 from abc import ABC, abstractclassmethod
 
 
@@ -6,9 +12,7 @@ class Currency(ABC):
     _whole_part = 0
     _fractional_part = 0
 
-    def __init__(self) -> None: # This init method will not be accessible because it is overrided by init method below
-        super().__init__()
-        
+
     def __init__(self, value):
         super().__init__()
         self.set_value(value)
