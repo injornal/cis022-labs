@@ -42,7 +42,7 @@ class Currency(ABC):
         :param amount: the amont of money to be added
         :type amount: Currency
         """
-        self.set_value(self.get_value + amount.get_value())
+        self.set_value(self.get_value() + amount.get_value())
 
     def subtract(self, amount):
         """Subtracts the given value from self

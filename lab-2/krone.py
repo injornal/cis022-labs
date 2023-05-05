@@ -19,5 +19,5 @@ class Krone(currency.Currency):
 
         ex) 1.23 Krone  2.46 Soum
         """
-        print(f"{self.get_value():.2f} {Krone._name}")
+        print(f"{self.get_value():.2f} {Krone._name}", end=' ')
 
