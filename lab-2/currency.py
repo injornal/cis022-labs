@@ -33,7 +33,7 @@ class Currency(ABC):
         :type value: float
         """
         self._whole_part = int(value)
-        self._fractional_part = int(100 * value - 100 * int(value))
+        self._fractional_part = int((100 * value ) % 100)
 
 
     def add(self, amount):
@@ -42,7 +42,7 @@ class Currency(ABC):
         :param amount: the amont of money to be added
         :type amount: Currency
         """
-        self.set_value(self.get_value() + amount.get_value())
+        self.set_value((self.get_value() * 100 + amount.get_value() * 100) / 100)
 
     def subtract(self, amount):
         """Subtracts the given value from self
@@ -50,7 +50,7 @@ class Currency(ABC):
         :param amount: the amount of money to be subtracted
         :type amount: Currency
         """
-        self.set_value(self.get_value() - amount.get_value())
+        self.set_value((self.get_value() * 100 - amount.get_value() * 100) / 100)
 
     def is_equal(self, currency):
         """Return whether the amount of money in self is the same as in the given objects 
