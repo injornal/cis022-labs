@@ -28,25 +28,28 @@ def main():
     user_action = ''
 
     while True:
-        soum_currency.print()
-        krone_currency.print()
+        try:
+            soum_currency.print()
+            krone_currency.print()
 
-        raw_input = input()
-        
-        if raw_input == 'q':
-            break
-        
-        array_input = raw_input.split()
-        user_action = array_input[0]
-        target_currency = array_input[1]
-        amount = float(array_input[2])
+            raw_input = input()
+            
+            if raw_input == 'q':
+                break
+            
+            array_input = raw_input.split()
+            user_action = array_input[0]
+            target_currency = array_input[1]
+            amount = float(array_input[2])
 
-        if array_input[3] == "Soum":
-            new_currency_object = soum.Soum(amount)
-        elif array_input[3] == "Krone":
-            new_currency_object = krone.Krone(amount)
-        
-        action(user_action, array_currency, new_currency_object, target_currency)
+            if array_input[3] == "Soum":
+                new_currency_object = soum.Soum(amount)
+            elif array_input[3] == "Krone":
+                new_currency_object = krone.Krone(amount)
+            
+            action(user_action, array_currency, new_currency_object, target_currency)
+        except Exception as e:
+            print(str(e))
 
 
 

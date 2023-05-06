@@ -38,7 +38,7 @@ class Currency(ABC):
             self._whole_part = int(value)
             self._fractional_part = int((100 * value ) % 100)
         except ValueError:
-            print("Ivalid assignment")
+            raise Exception("Ivalid assignment")
 
 
 
@@ -52,7 +52,7 @@ class Currency(ABC):
         if type(currency) == type(self):
             self._set_value((self.get_value() * 100 + currency.get_value() * 100) / 100)
         else: 
-            print("Invalid addition")
+            raise Exception("Invalid addition")
 
     def subtract(self, currency):
         """Subtracts the given value from self
@@ -64,7 +64,7 @@ class Currency(ABC):
         if type(currency) == type(self) and self._is_greater(currency):
             self._set_value((self.get_value() * 100 - currency.get_value() * 100) / 100)
         else:
-            print("Invalid subtraction")
+            raise Exception("Invalid subtraction")
 
     def is_equal(self, currency):
         """Return whether the amount of money in self is the same as in the given objects 
@@ -76,7 +76,7 @@ class Currency(ABC):
         if type(currency) == type(self):
             return self.get_value() == currency.get_value()
         else:
-            print("Invalid objcect comparison")
+            raise Exception("Invalid objcect comparison")
 
     def _is_greater(self, currency):
         """Returns whether the amount of money in self is greater than in the object
@@ -88,7 +88,7 @@ class Currency(ABC):
         if type(currency) == type(self):
             return self.get_value() > currency.get_value()
         else:
-            print("Invalid objcect comparison")
+            raise Exception("Invalid objcect comparison")
 
     @abstractclassmethod
     def print(self):
