@@ -15,7 +15,7 @@ class Currency(ABC):
 
     def __init__(self, value):
         super().__init__()
-        self.set_value(value)
+        self._set_value(value)
 
 
     def get_value(self):
@@ -27,34 +27,44 @@ class Currency(ABC):
         """
         return self._whole_part + self._fractional_part / 100
 
-    def set_value(self, value):
+    def _set_value(self, value):
         """Assigns the value to self 
         
         pre: value - a floating point value to be assigned
         post:
         return:
         """
-        self._whole_part = int(value)
-        self._fractional_part = int((100 * value ) % 100)
+        try:
+            self._whole_part = int(value)
+            self._fractional_part = int((100 * value ) % 100)
+        except ValueError:
+            print("Ivalid assignment")
 
 
-    def add(self, amount):
+
+    def add(self, currency):
         """Adds money to self
         
-        pre: amount - a Curency object, the amont of money to be added
+        pre: currency - a Curency object, the amont of money to be added
         post: 
         return:
         """
-        self.set_value((self.get_value() * 100 + amount.get_value() * 100) / 100)
+        if type(currency) == type(self):
+            self._set_value((self.get_value() * 100 + currency.get_value() * 100) / 100)
+        else: 
+            print("Invalid addition")
 
-    def subtract(self, amount):
+    def subtract(self, currency):
         """Subtracts the given value from self
         
-        pre: amount - a Currency object, the amount of money to be subtracted
+        pre: currency - a Currency object, the amount of money to be subtracted
         post: 
         return: 
         """
-        self.set_value((self.get_value() * 100 - amount.get_value() * 100) / 100)
+        if type(currency) == type(self):
+            self._set_value((self.get_value() * 100 - currency.get_value() * 100) / 100)
+        else:
+            print("Invalid substraction")
 
     def is_equal(self, currency):
         """Return whether the amount of money in self is the same as in the given objects 
@@ -63,7 +73,10 @@ class Currency(ABC):
         post: 
         return: True or False
         """
-        return self.get_value() == currency.get_value()
+        if type(currency) == type(self):
+            return self.get_value() == currency.get_value()
+        else:
+            print("Invalid objcect comparison")
 
     def is_greater(self, currency):
         """Returns whether the amount of money in self is greater than in the object
@@ -72,7 +85,10 @@ class Currency(ABC):
         post: 
         return: True or False
         """
-        return self.get_value() > currency.get_value()
+        if type(currency) == type(self):
+            return self.get_value() > currency.get_value()
+        else:
+            print("Invalid objcect comparison")
 
     @abstractclassmethod
     def print(self):
