@@ -18,6 +18,9 @@ class Soum(currency.Currency):
         """Prints the object in form of xx.yy followed by derived currency name
 
         ex) 1.23 Krone  2.46 Soum
+        pre: 
+        post: object's value and class name
+        return:
         """
         print(f"{self.get_value():.2f} {Soum._name}", end=' ')
 
