@@ -61,7 +61,7 @@ class Currency(ABC):
         post: 
         return: 
         """
-        if type(currency) == type(self) and currency.get_value() < self.get_value():
+        if type(currency) == type(self) and self._is_greater(currency):
             self._set_value((self.get_value() * 100 - currency.get_value() * 100) / 100)
         else:
             print("Invalid subtraction")
@@ -78,7 +78,7 @@ class Currency(ABC):
         else:
             print("Invalid objcect comparison")
 
-    def is_greater(self, currency):
+    def _is_greater(self, currency):
         """Returns whether the amount of money in self is greater than in the object
         
         pre: currency - the Currency object to be compared
