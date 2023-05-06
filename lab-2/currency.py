@@ -61,10 +61,10 @@ class Currency(ABC):
         post: 
         return: 
         """
-        if type(currency) == type(self):
+        if type(currency) == type(self) and currency.get_value() < self.get_value():
             self._set_value((self.get_value() * 100 - currency.get_value() * 100) / 100)
         else:
-            print("Invalid substraction")
+            print("Invalid subtraction")
 
     def is_equal(self, currency):
         """Return whether the amount of money in self is the same as in the given objects 
