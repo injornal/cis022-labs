@@ -38,7 +38,7 @@ class Currency(ABC):
             self._whole_part = int(value)
             self._fractional_part = int((100 * value ) % 100)
         except ValueError:
-            print("Ivalid assignment")
+            print("Invalid assignment")
 
 
 
