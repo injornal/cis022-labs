@@ -5,26 +5,29 @@ This assignment is to make singly linked list by using stack and queue.
 """
 
 from singly_linked_list import SinglyLinkedList
+from currency import Currency
 
 
 # Do not use linked list functions in this class
-class Queue:
-    
-    def __init__(self) -> None:
-        pass
+class Queue(SinglyLinkedList):
 
-    def enqueue(self, object_currency):
-        pass
+    def __init__(self) -> None:
+        super().__init__()
+
+    def enqueue(self, currency):
+        self.add_currency(currency, index=self._count-1)
 
     def dequeue(self):
-        pass
+        element = self.get_currency(index=0)
+        self.remove_currency(element=0)
+        return element
 
     def peekFront(self):
-        pass
+        return self.get_currency(index=0)
 
     def peekRear(self):
-        pass
+        return self.get_currency(index=self._count-1)
 
     def printQueue(self):
-        pass
+        self.print_list()
 
