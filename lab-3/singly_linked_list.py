@@ -3,17 +3,17 @@ from currency import Currency
 
 
 class SinglyLinkedList:
-    _count = 0
-    _start: LinkNode = None
-    _end: LinkNode = None
 
     def __init__(self):
-        pass
+        self._count = 0
+        self._start = LinkNode(None)
+        self._end = LinkNode(None)
+        self._start.next = self._end
     
     def add_currency(self, currency: Currency, index):
         """The method inserts a currency in a given position
         pre: currency - Currency, the inserting object
-            index - integer, the index of the postion of the insertion
+            index - integer, the index of the position of the insertion
         post: 
         return:
         """
@@ -45,7 +45,7 @@ class SinglyLinkedList:
         return: LinkNode
         """
         if self._start.data == currency:
-            return cur
+            return self._start
         cur = self._start
         while cur.next:
             cur = cur.next
@@ -78,7 +78,7 @@ class SinglyLinkedList:
         """
         if index >= self._count:
             raise Exception("Element out of bound")
-        cur = self._start
+        cur = self._start.next
         for i in range(index):
             cur = cur.next
         return cur
@@ -96,11 +96,8 @@ class SinglyLinkedList:
         pre: 
         post: list 
         return:
-        """ 
-        if self._start is None:
-            print()
-            return
-        cur = self._start
+        """
+        cur = self._start.next
         print(cur.data)
         while cur.next:
             cur = cur.next
