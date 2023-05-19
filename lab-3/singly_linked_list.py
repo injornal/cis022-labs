@@ -23,25 +23,20 @@ class SinglyLinkedList:
         cur.next = new_node
         self._count += 1
 
-    def remove_currency(self, index):
-        """The method removes the currency emelement at the given position from the list 
-        pre: index - integer, the index of the element to be deleted
+    def remove_currency(self, element):
+        """The method removes the node by its value or index
+        pre: index - integer/Currency, the index/value of the element to be deleted
         post: 
         return:
         """
-        cur = self.get_node(index - 1)
-        cur.next = cur.next.next 
-        self._count -= 1
-
-    def remove_currency(self, currency: Currency):
-        """The method removes the currency emelement with the given value from the list 
-        pre: index - integer, the index of the element to be deleted
-        post: 
-        return:
-        """
-        cur = self.get_node(self.find_currency(currency))
-        cur.next = cur.next.next 
-        self._count -= 1
+        if type(element) == int:
+            cur = self.get_node(element - 1)
+            cur.next = cur.next.next
+            self._count -= 1
+        elif type(element) == Currency:
+            cur = self.get_node(self.find_currency(element))
+            cur.next = cur.next.next
+            self._count -= 1
     
     def find_node(self, currency: Currency):
         """The method finds a node by its value
