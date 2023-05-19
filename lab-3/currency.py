@@ -1,7 +1,7 @@
 """
-LAB 2
+LAB 3
 Kostiantyn Babich, Hyunjong Shin
-This assignment is to make a base class and derived classes and use them to perform several operations
+This assignment is to make singly linked list by using stack and queue.
 """
 
 from abc import ABC, abstractclassmethod
@@ -38,7 +38,7 @@ class Currency(ABC):
             self._whole_part = int(value)
             self._fractional_part = int((100 * value ) % 100)
         except ValueError:
-            raise Exception("Ivalid assignment")
+            raise Exception("Invalid assignment")
 
 
 

@@ -1,7 +1,7 @@
 """
-LAB 2
+LAB 3
 Kostiantyn Babich, Hyunjong Shin
-This assignment is to make a base class and derived classes and use them to perform several operations
+This assignment is to make singly linked list by using stack and queue.
 """
 
 import currency
