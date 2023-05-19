@@ -1,6 +1,7 @@
 from link_node import LinkNode
 from currency import Currency
 
+
 class SinglyLinkedList:
     _count = 0
     _start: LinkNode = None

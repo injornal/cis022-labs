@@ -1,5 +1,6 @@
 from currency import Currency
 
+
 class LinkNode:
     data: Currency = None
     next = None
