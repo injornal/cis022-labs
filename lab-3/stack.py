@@ -37,7 +37,7 @@ class Stack(SinglyLinkedList):
             return removed_item
 
     def peek(self):
-        return Krone(self._start.data.get_value()) # copy of a Krone object
+        return Krone(self._start.data.get_value())  # copy of a Krone object
 
     def printStack(self):
         cur = self._start

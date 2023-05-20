@@ -13,8 +13,8 @@ class SinglyLinkedList:
 
     def __init__(self):
         self._count = 0
-        self._start = None # _start is pointing the first node in liked list
-        self._end = None # _end is pointing the last node in linked list
+        self._start = None  # _start is pointing the first node in liked list
+        self._end = None  # _end is pointing the last node in linked list
     
     def add_currency(self, currency: Currency, index):
         """The method inserts a currency in a given position
@@ -26,13 +26,12 @@ class SinglyLinkedList:
         new_node = LinkNode(currency)
 
         if index < 0:
-            print("Invalid index")
-            return
+            raise Exception("Invalid index")
         
         if index == 0:
             new_node.next = self._start
             self._start = new_node
-            if self._end == None:
+            if self._end is None:
                 self._end = new_node
         else:
             cur = self.get_node(index - 1)
@@ -66,11 +65,10 @@ class SinglyLinkedList:
         else:
             pre = self.get_node(index - 1)
             pre.next = pre.next.next
-            if pre.next == None:
+            if pre.next is None:
                 self._end = pre
         self._count -= 1
 
-    
     def find_node(self, currency: Currency):
         """The method finds a node by its value
         pre: currency - Currency, the value of the searched node

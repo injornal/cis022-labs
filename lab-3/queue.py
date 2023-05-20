@@ -16,7 +16,7 @@ class Queue(SinglyLinkedList):
     def __init__(self) -> None:
         super().__init__()
 
-    def enqueue(self, currency):
+    def enqueue(self, currency: Currency):
         new_node = LinkNode(currency)
         if self.is_list_empty():
             self._start = new_node
@@ -38,10 +38,10 @@ class Queue(SinglyLinkedList):
             return removed_item
 
     def peekFront(self):
-        return Krone(self._start.data.get_value()) # copy of a Krone object
+        return Krone(self._start.data.get_value())  # copy of a Krone object
 
     def peekRear(self):
-        return Krone(self._end.data.get_value()) # copy of a Krone object
+        return Krone(self._end.data.get_value())  # copy of a Krone object
 
     def printQueue(self):
         cur = self._start
