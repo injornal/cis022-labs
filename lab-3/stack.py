@@ -48,3 +48,27 @@ class Stack(SinglyLinkedList):
             cur = cur.next
             cur.data.print()
             print("\t", end="")
+
+    def add_currency(self, currency: Currency, index):
+        raise NameError("method is not accessible")
+
+    def remove_currency(self, element):
+        raise NameError("method is not accessible")
+
+    def find_node(self, currency: Currency):
+        raise NameError("method is not accessible")
+
+    def find_currency(self, currency: Currency):
+        raise NameError("method is not accessible")
+
+    def get_node(self, index):
+        raise NameError("method is not accessible")
+
+    def get_currency(self, index):
+        raise NameError("method is not accessible")
+
+    def print_list(self):
+        raise NameError("method is not accessible")
+
+    def count_currency(self):
+        raise NameError("method is not accessible")

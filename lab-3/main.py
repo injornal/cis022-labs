@@ -105,7 +105,7 @@ def main():
 
         print("Program ended: Stack and Queue implementation using linked list")
     except Exception as e:
-        print(str(e))
+        print(e)
 
 
 if __name__ == "__main__":
