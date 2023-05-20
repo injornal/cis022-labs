@@ -1,5 +1,12 @@
+"""
+LAB 3
+Kostiantyn Babich, Hyunjong Shin
+This assignment is to make singly linked list to make stack and queue.
+"""
+
 from link_node import LinkNode
 from currency import Currency
+from krone import Krone
 
 
 class SinglyLinkedList:
@@ -42,14 +49,13 @@ class SinglyLinkedList:
         post: 
         return:
         """
-        if type(element) == Currency:
+        if type(element) == Krone:
             index = self.find_currency(element)
         elif type(element) == int:
             index = element
 
         if index < 0 or self._start is None:
-            print("Invalid index")
-            return
+            raise Exception("Invalid index")
         
         if index == 0:
             if self._start == self._end:
@@ -88,12 +94,12 @@ class SinglyLinkedList:
         """
         cur = self._start
         index = 0
-        if cur.data == currency:
+        if cur.data.get_value() == currency.get_value():
             return index
         while cur.next:
             cur = cur.next
             index += 1
-            if cur.data == currency:
+            if cur.data.get_value() == currency.get_value():
                 return index
         raise Exception("Element is not on the list")
     
@@ -136,7 +142,7 @@ class SinglyLinkedList:
         post:
         return: boolean
         """
-        return bool(self._count)
+        return not bool(self._count)
     
     def count_currency(self):
         """The method returns the amount of elements in the list

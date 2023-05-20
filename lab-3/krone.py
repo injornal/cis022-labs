@@ -1,7 +1,7 @@
 """
 LAB 3
 Kostiantyn Babich, Hyunjong Shin
-This assignment is to make singly linked list by using stack and queue.
+This assignment is to make singly linked list to make stack and queue.
 """
 
 import currency
