@@ -1,11 +1,13 @@
 """
 LAB 3
 Kostiantyn Babich, Hyunjong Shin
-This assignment is to make singly linked list by using stack and queue.
+This assignment is to make singly linked list to make stack and queue.
 """
 
 from singly_linked_list import SinglyLinkedList
+from link_node import LinkNode
 from currency import Currency
+from krone import Krone
 
 
 # Do not use linked list functions in this class
@@ -15,15 +17,26 @@ class Stack(SinglyLinkedList):
         super().__init__()
 
     def push(self, currency: Currency):
-        self.add_currency(currency, index=0)
+        cur = self._start
+        new_node = LinkNode(currency)
+        new_node.next = cur
+        self._start = new_node
+        self._count += 1
 
     def pop(self):
-        element = self.get_currency(index=0)
-        self.remove_currency(element=0)
-        return element
+        element = self._start
+        self._start = self._start.next
+        self._count -= 1
+        return element.data
 
     def peek(self):
-        return self.get_currency(index=0)
+        copy_currency = Krone(self._start.data.get_value()) # copy of a Krone object
+        return copy_currency
 
     def printStack(self):
-        self.print_list()
+        cur = self._start
+
+        while cur.next:
+            cur.data.print()
+            print("\t")
+            cur = cur.next

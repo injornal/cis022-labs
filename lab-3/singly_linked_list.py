@@ -6,9 +6,8 @@ class SinglyLinkedList:
 
     def __init__(self):
         self._count = 0
-        self._start = LinkNode(None)
-        self._end = LinkNode(None)
-        self._start.next = self._end
+        self._start = None # _start is pointing the first node in liked list
+        self._end = None # _end is pointing the last node in linked list
     
     def add_currency(self, currency: Currency, index):
         """The method inserts a currency in a given position
@@ -17,10 +16,24 @@ class SinglyLinkedList:
         post: 
         return:
         """
-        cur = self.get_node(index - 1)
         new_node = LinkNode(currency)
-        new_node.next = cur.next
-        cur.next = new_node
+
+        if index < 0:
+            print("Invalid index")
+            return
+        
+        if index == 0:
+            new_node.next = self._start
+            self._start = new_node
+            if self._end == None:
+                self._end = new_node
+        else:
+            cur = self.get_node(index - 1)
+            new_node.next = cur.next
+            cur.next = new_node
+            if index == self._count:
+                self._end = new_node
+        
         self._count += 1
 
     def remove_currency(self, element):
@@ -29,14 +42,28 @@ class SinglyLinkedList:
         post: 
         return:
         """
-        if type(element) == int:
-            cur = self.get_node(element - 1)
-            cur.next = cur.next.next
-            self._count -= 1
-        elif type(element) == Currency:
-            cur = self.get_node(self.find_currency(element))
-            cur.next = cur.next.next
-            self._count -= 1
+        if type(element) == Currency:
+            index = self.find_currency(element)
+        elif type(element) == int:
+            index = element
+
+        if index < 0 or self._start is None:
+            print("Invalid index")
+            return
+        
+        if index == 0:
+            if self._start == self._end:
+                self._start = None
+                self._end = None
+            else:
+                self._start = self._start.next
+        else:
+            pre = self.get_node(index - 1)
+            pre.next = pre.next.next
+            if pre.next == None:
+                self._end = pre
+        self._count -= 1
+
     
     def find_node(self, currency: Currency):
         """The method finds a node by its value
@@ -78,7 +105,7 @@ class SinglyLinkedList:
         """
         if index >= self._count:
             raise Exception("Element out of bound")
-        cur = self._start.next
+        cur = self._start
         for i in range(index):
             cur = cur.next
         return cur
@@ -97,11 +124,11 @@ class SinglyLinkedList:
         post: list 
         return:
         """
-        cur = self._start.next
-        print(cur.data)
+        cur = self._start
+        cur.data.print()
         while cur.next:
             cur = cur.next
-            print(cur.data)
+            cur.data.print()
 
     def is_list_empty(self):
         """The method returns whether the list is epty
