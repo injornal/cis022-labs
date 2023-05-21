@@ -52,6 +52,8 @@ class SinglyLinkedList:
             index = self.find_currency(element)
         elif type(element) == int:
             index = element
+        else:
+            raise Exception("Invalid input type: Input type should be either Currency or integer")
 
         if index < 0 or self._start is None:
             raise Exception("Invalid index")
