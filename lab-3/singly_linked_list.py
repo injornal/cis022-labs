@@ -133,6 +133,22 @@ class SinglyLinkedList:
         pre: currency - Currency, the value of the searched node
         post:
         return: LinkNode
+
+        Algorithm find_node ( currency )
+            if start node->data is currency
+                return start node
+            end if
+
+            current = start node
+            while current->next is not None
+                current = current->next
+                if current->data is currency
+                    return current
+                end if
+            end while
+            throw exception "Element not found"
+
+        end find_node
         """
         if self._start.data == currency:
             return self._start
@@ -148,6 +164,24 @@ class SinglyLinkedList:
         pre: currency - Currency, the value of the searched element
         post:
         return: Currency
+
+        Algorithm find_currency ( currency )
+            current = start node
+            set index to 0
+            if current->data->value is currency->value
+                return index
+            end if
+            
+            while current->next is not None
+                current = current->next
+                increment index by 1
+                if current->data->value is currency->value
+                    return index
+                end if
+            end while
+            throw exception "Element not found"
+
+        end find_currency
         """
         cur = self._start
         index = 0
