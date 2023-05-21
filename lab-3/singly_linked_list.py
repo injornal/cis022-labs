@@ -22,10 +22,35 @@ class SinglyLinkedList:
             index - integer, the index of the position of the insertion
         post: 
         return:
+
+        Algorithm add_currency ( currency, index )
+            new_node = LinkNode(currency)
+
+            if index is invalid
+                throw exception "Invalid index"
+            end if
+
+            if index == 0
+                new_node->next = start node
+                start node = new_node
+                if list is empty:
+                    end node = new_node
+                end if
+            else
+                current = get_node(index - 1) // previous to the index node
+                new_node->next = current->next
+                current->next = new_node
+                if index = size of the list
+                    end node = new_node
+                end if
+            end if
+
+            size of the list += 1
+        end add_currency
         """
         new_node = LinkNode(currency)
 
-        if index < 0:
+        if index < 0 or type(index) != int:
             raise Exception("Invalid index")
         
         if index == 0:
@@ -44,9 +69,41 @@ class SinglyLinkedList:
 
     def remove_currency(self, element):
         """The method removes the node by its value or index
-        pre: index - integer/Currency, the index/value of the element to be deleted
+        pre: element - integer/Currency, the index/value of the element to be deleted
         post: 
         return:
+
+        Algorithm remove_currency (element)
+            if element is a Krone
+                index = find_currency(element)
+            else if element is an integer
+                index = element
+            else
+                throw exception "Invalid input type"
+            end if
+
+            if index is invalid
+                throw exception "Invalid index"
+            end if
+
+            if index == 0
+                if start node = end node
+                    start node = null
+                    end node = null
+                else
+                    start node = start node->next
+                end if
+
+            else
+                previous = get_node(index - 1)
+                previous->next  = previous->next->next
+                if previous->next doesn't exist
+                    end node = previous
+                end if
+            end if
+
+            size of the list += 1
+        end remove_currency
         """
         if type(element) == Krone:
             index = self.find_currency(element)

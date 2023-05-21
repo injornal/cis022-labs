@@ -44,7 +44,6 @@ def main():
         print(e)
     try:
         print(f"Kr 44.56 is in index {singly_linked_list.find_currency(Krone(44.56))} in singly_linked_list")
-        # Check this again 44.55 or 44.56?
     except Exception as e:
         print(e)
 
@@ -73,7 +72,7 @@ def main():
         print(e)
 
     try:
-        singly_linked_list.remove_currency(count_currency % 7)
+        singly_linked_list.remove_currency(count_currency / 7)
     except Exception as e:
         print(e)
 
