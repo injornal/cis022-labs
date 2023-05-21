@@ -16,7 +16,7 @@ class Queue(SinglyLinkedList):
         super().__init__()
 
     def enqueue(self, currency: Currency):
-        super().add_currency(currency, self._count)  # TODO: add a node to the end
+        super().add_currency(currency, self._count)
 
     def dequeue(self):
         removed_item = super().get_currency(0)

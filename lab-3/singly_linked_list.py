@@ -53,7 +53,7 @@ class SinglyLinkedList:
         elif type(element) == int:
             index = element
 
-        if index < 0 or self._start is None:
+        if index < 0 or type(index) != int or self._start is None:
             raise Exception("Invalid index")
         
         if index == 0:
@@ -82,7 +82,7 @@ class SinglyLinkedList:
             cur = cur.next
             if cur.data == currency:
                 return cur
-        raise Exception("Element is not in the list")
+        raise Exception("Element not found")
     
     def find_currency(self, currency: Currency):
         """The method finds an index of the node with given value 
@@ -99,7 +99,7 @@ class SinglyLinkedList:
             index += 1
             if cur.data.get_value() == currency.get_value():
                 return index
-        raise Exception("Element is not on the list")
+        raise Exception("Element not found")
     
     def get_node(self, index):
         """The method returns the node with given index
