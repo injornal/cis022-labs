@@ -130,9 +130,12 @@ class SinglyLinkedList:
         """
         cur = self._start
         cur.data.print()
+        print("\t", end="")
+
         while cur.next:
             cur = cur.next
             cur.data.print()
+            print("\t", end="")
 
     def is_list_empty(self):
         """The method returns whether the list is epty

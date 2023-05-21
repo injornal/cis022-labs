@@ -49,9 +49,8 @@ def main():
         for i in range(9, 12 + 1):
             singly_linked_list.add_currency(array_currency[i], i % 5)
 
-        # What is remove_currency?
         singly_linked_list.remove_currency(count_currency % 6)
-        # singly_linked_list.remove_currency(count_currency / 7)
+        singly_linked_list.remove_currency(count_currency % 7)
 
         singly_linked_list.print_list()
         print()
