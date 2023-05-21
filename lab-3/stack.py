@@ -25,7 +25,7 @@ class Stack(SinglyLinkedList):
     def peek(self):
         return Krone(self._start.data.get_value())  # copy of a Krone object
 
-    def printStack(self):
+    def print_stack(self):
         super().print_list()
 
     def add_currency(self, currency: Currency, index):

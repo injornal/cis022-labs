@@ -23,13 +23,13 @@ class Queue(SinglyLinkedList):
         super().remove_currency(0)
         return removed_item
 
-    def peekFront(self):
+    def peek_front(self):
         return Krone(self._start.data.get_value())  # copy of a Krone object
 
-    def peekRear(self):
+    def peek_rear(self):
         return Krone(self._end.data.get_value())  # copy of a Krone object
 
-    def printQueue(self):
+    def print_queue(self):
         super().print_list()
 
     def add_currency(self, currency: Currency, index):
