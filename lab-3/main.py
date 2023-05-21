@@ -49,7 +49,7 @@ def main():
         for i in range(9, 12 + 1):
             singly_linked_list.add_currency(array_currency[i], i % 5)
 
-        # What is _currency?
+        # What is remove_currency?
         singly_linked_list.remove_currency(count_currency % 6)
         # singly_linked_list.remove_currency(count_currency / 7)
 
@@ -106,6 +106,7 @@ def main():
         print("Program ended: Stack and Queue implementation using linked list")
     except Exception as e:
         print(e)
+        raise e
 
 
 if __name__ == "__main__":

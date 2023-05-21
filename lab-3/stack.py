@@ -17,37 +17,16 @@ class Stack(SinglyLinkedList):
         super().__init__()
 
     def push(self, currency: Currency):
-        new_node = LinkNode(currency)
-        if self.is_list_empty():
-            self._start = new_node
-            self._end = new_node
-        else:
-            new_node.next = self._start
-            self._start = new_node
-        self._count += 1
+        super().add_currency(currency, index=0)
 
     def pop(self):
-        if self.is_list_empty():
-            raise Exception("Stack is empty")
-        else:
-            removed_item = self._start.data
-            self._start = self._start.next
-            if self._start is None:
-                self._end = None
-            return removed_item
+        super().remove_currency(0)
 
     def peek(self):
         return Krone(self._start.data.get_value())  # copy of a Krone object
 
     def printStack(self):
-        cur = self._start
-        cur.data.print()
-        print("\t", end="")
-
-        while cur.next:
-            cur = cur.next
-            cur.data.print()
-            print("\t", end="")
+        super().print_list()
 
     def add_currency(self, currency: Currency, index):
         raise NameError("method is not accessible")
