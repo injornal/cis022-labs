@@ -1,55 +1,63 @@
 from bst_node import BSTNode
+from krone import Krone
 
 
 class BST:
     _count = 0
+    _head = None
 
-    def __init__(self, data=None):
-        if data:
+    def __init__(self, value=None):
+        if value:
             self._count += 1
-            self._root = BSTNode(data)
+            self._head = BSTNode(data)
         else:
-            self._root = None
+            self._head = None
 
-    def preorder_traversal(self):
+    def preorder_traversal(self, root):
         pass
 
-    def postorder_traversal(self):
+    def postorder_traversal(self, root):
         pass
 
-    def inorder_traversal(self):
-        pass
+    def inorder_traversal(self, root):
+        res = []
+        if root:
+            res = self.inorder_traversal(root.left)
+            res.append(root.data.get_value())
+            res = res + self.inorder_traversal(root.right)
+        return res
 
-    def breadth_first_traversal(self):
+    def breadth_first_traversal(self, root):
         pass
 
     def search(self, value):
         pass
 
-    def insert(self, value):
-        if self._root is None:
-            self._root = BSTNode(value)
-        else:
-            cur = self._root
-            while True:
-                if value.get_value() < cur.get_data.get_value():
-                    if cur.left is None:
-                        cur.left = BSTNode(value)
-                        break
-                    else:
-                        cur = cur.left
+    def insert(self, krone: Krone):
+        if not self._head:
+            self._head = BSTNode(data=krone)
+            return
+        node = self._head
+        search = True
+        while search:
+            if node.data.get_value() > krone.get_value():
+                if node.left:
+                    node = node.left
                 else:
-                    if cur.right is None:
-                        cur.right = BSTNode(value)
-                        break
-                    else:
-                        cur = cur.right
+                    node.left = BSTNode(data=krone)
+                    search = False
+            else:
+                if node.right:
+                    node = node.right
+                else:
+                    node.right = BSTNode(data=krone)
+                    search = False
 
     def delete(self, value):
         pass
 
     def print(self):
-        if self._root is None:
+        if self._head is None:
             return
 
     def count(self):
@@ -60,3 +68,6 @@ class BST:
 
     def empty(self):
         pass
+
+    def get_head(self):
+        return self._head
