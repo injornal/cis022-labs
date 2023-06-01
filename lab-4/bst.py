@@ -323,7 +323,7 @@ class BST:
                     while suc.left:
                         suc = suc.left
                     suc_data = suc.get_data()
-                    self.delete(suc_data.get_value())
+                    self.delete(suc_data)
                     cur.set_data(suc_data)
                 return
             elif cur.get_data().get_value() < value:
