@@ -5,12 +5,13 @@ from queue import Queue
 
 class BST:
     _count = 0
-    _head = None    # What's this?
 
     def __init__(self, value=None):
         if value:
             self._count += 1
             self._head = BSTNode(value)
+        else:
+            self._head = None
 
     def preorder_traversal(self, root):
         """Returns the list in which preordered nodes exist
@@ -81,7 +82,15 @@ class BST:
 
 
     def search(self, value):    # type of value?
-        pass
+        node = self._head
+        while node:
+            if node.data.get_value() == value:
+                return node
+            if node.data.get_value() > value:
+                node = node.left
+            else:
+                node = node.right
+        raise Exception("Element not found.")
 
     def insert(self, krone: Krone):
         """Inserts BSTNode with Krone object in BST
@@ -125,9 +134,8 @@ class BST:
         self.print(root.left)
         self.print(root.right)
 
-
     def count(self):
-        pass
+        return self._count
 
     def is_empty(self):
         """Checks if BST is empty
@@ -139,7 +147,7 @@ class BST:
         return not bool(self._count)
 
     def empty(self):
-        pass
+        self._head = None
 
     def get_head(self):
         """Returns the root node
