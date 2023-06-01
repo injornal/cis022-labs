@@ -72,16 +72,13 @@ class BST:
             if node not in visited:
                 visited.add(node)
                 res.append(node.get_data().get_value())
-            if node.left != None:
+            if node.left is not None:
                 queue.enqueue(node.left)
-            if node.right != None:
+            if node.right is not None:
                 queue.enqueue(node.right)
         return res
 
-
-
-
-    def search(self, value):  # type of value?
+    def search(self, value):
         node = self._head
         while node:
             if node.data.get_value() == value:
@@ -137,9 +134,9 @@ class BST:
                         par.left = cur.left
                     else:
                         par.right = cur.left
-                elif not cur.lefte:
+                elif not cur.left:
                     if not par:
-                        par = cur.right
+                        self._head = cur.right
                     elif par.left == cur:
                         par.left = cur.right
                     else:
