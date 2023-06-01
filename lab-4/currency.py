@@ -1,7 +1,11 @@
 """
-LAB 2
+LAB 4
 Kostiantyn Babich, Hyunjong Shin
 This assignment is to make a base class and derived classes and use them to perform several operations
+"""
+
+"""
+This file has been changed since there was an floating point error when setting the fractional part
 """
 
 from abc import ABC, abstractclassmethod
@@ -35,8 +39,9 @@ class Currency(ABC):
         return:
         """
         try:
-            self._whole_part = int(value)
-            self._fractional_part = int((100 * value ) % 100)
+            self._whole_part, self._fractional_part = str(value).split('.')
+            self._whole_part = int(self._whole_part)
+            self._fractional_part = int(self._fractional_part)
         except ValueError:
             raise Exception("Invalid assignment")
 

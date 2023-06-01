@@ -4,33 +4,41 @@ from krone import Krone
 
 class BST:
     _count = 0
-    _head = None
+    _head = None    # What's this?
 
     def __init__(self, value=None):
         if value:
             self._count += 1
-            self._head = BSTNode(data)
-        else:
-            self._head = None
+            self._head = BSTNode(value)
 
     def preorder_traversal(self, root):
-        pass
+        res = []
+        if root:
+            res.append(root.get_data().get_value())
+            res = res + self.preorder_traversal(root.left)
+            res = res + self.preorder_traversal(root.right)
+        return res
 
     def postorder_traversal(self, root):
-        pass
+        res = []
+        if root:
+            res = self.postorder_traversal(root.left)
+            res = res + self.postorder_traversal(root.right)
+            res.append(root.get_data().get_value())
+        return res
 
     def inorder_traversal(self, root):
         res = []
         if root:
             res = self.inorder_traversal(root.left)
-            res.append(root.data.get_value())
+            res.append(root.get_data().get_value())
             res = res + self.inorder_traversal(root.right)
         return res
 
     def breadth_first_traversal(self, root):
         pass
 
-    def search(self, value):
+    def search(self, value):    # type of value?
         pass
 
     def insert(self, krone: Krone):
@@ -56,9 +64,13 @@ class BST:
     def delete(self, value):
         pass
 
-    def print(self):
-        if self._head is None:
+    def print(self, root):
+        if root is None:
             return
+        root.get_data().print()
+        self.print(root.left)
+        self.print(root.right)
+
 
     def count(self):
         pass
