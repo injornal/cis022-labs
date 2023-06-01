@@ -137,10 +137,9 @@ class BST:
         return res
 
 
-    def search(self, value):
-        """Returns the node that has value same as the given value
-
-        pre: value - floating point object
+    def search(self, krone: Krone):
+        """Returns the searched node
+        pre: value - Krone object
         post:
         return: a node that has given value as value
 
@@ -160,6 +159,7 @@ class BST:
             throw exception "Element not found"
         end search
         """
+        value = krone.get_value()
         node = self._head
         while node:
             if node.get_data().get_value() == value:
@@ -168,7 +168,7 @@ class BST:
                 node = node.left
             else:
                 node = node.right
-        raise Exception("Element not found.")
+        return None
 
     def insert(self, krone: Krone):
         """Inserts BSTNode with Krone object in BST
@@ -226,10 +226,10 @@ class BST:
                     node.right = BSTNode(data=krone)
                     search = False
 
-    def delete(self, value):
-        """Removes a node from the tree by its value
+    def delete(self, krone: Krone):
+        """Removes a node
 
-        pre: value - floating point object
+        pre: value - Krone object
         post:
         return:
 
@@ -292,6 +292,7 @@ class BST:
             return
         end delete
         """
+        value = krone.get_value()
         par = None
         cur = self._head
         while cur:
@@ -354,6 +355,9 @@ class BST:
         root.get_data().print()
         self.print(root.left)
         self.print(root.right)
+
+        if root == self._head:
+            print()
 
     def count(self):
         """Returns the number of nodes in BST
