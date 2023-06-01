@@ -232,11 +232,70 @@ class BST:
         pre: value - floating point object
         post:
         return:
+
+        Algorithm delete ( value )
+            set parent to None
+            current = root node
+            while current is not None
+                if current->data->value is value
+                    if current has no child
+                        if parent is None
+                            empty BST
+                        end if
+                        elif parent->left is current
+                            set parent->left to None
+                        end elif
+                        else
+                            set parent->right to None
+                        end else
+                    end if
+                    elif current->right is None
+                        if parent is None
+                            set root node to current->left
+                        end if
+                        elif parent->left is current
+                            parent->left = current->left
+                        end elif
+                        else
+                            parent->right = current->left
+                        end else
+                    end elif
+                    elif current->left is None
+                        if parent is None
+                            set root node to current->right
+                        end if
+                        elif parent->left is current
+                            parent->left = current->right
+                        end elif
+                        else
+                            parent->right = current->right
+                        end else
+                    end elif
+                    else
+                        succesor = current->right
+                        while succesor->left exist
+                            succesor = succesor->left
+                        end while
+                        succesor_data = succesor->data
+                        delete(succesor_data->value)
+                        set current->data to succesor_data
+                    end else
+                    return
+                elif current->data->value is smaller than value
+                    parent = current
+                    current = current->right
+                end elif
+                else
+                    parent = current
+                    current = current->left
+                end else
+            return
+        end delete
         """
         par = None
         cur = self._head
         while cur:
-            if cur.data.get_value() == value:
+            if cur.get_data().get_value() == value:
                 if not cur.left and not cur.right:
                     if not par:
                         self.empty()
@@ -262,11 +321,11 @@ class BST:
                     suc = cur.right
                     while suc.left:
                         suc = suc.left
-                    suc_data = suc.data
+                    suc_data = suc.get_data()
                     self.delete(suc_data.get_value())
                     cur.set_data(suc_data)
                 return
-            elif cur.data.get_value() < value:
+            elif cur.get_data().get_value() < value:
                 par = cur
                 cur = cur.right
             else:
