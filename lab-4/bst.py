@@ -4,12 +4,13 @@ from krone import Krone
 
 class BST:
     _count = 0
-    _head = None    # What's this?
 
     def __init__(self, value=None):
         if value:
             self._count += 1
             self._head = BSTNode(value)
+        else:
+            self._head = None
 
     def preorder_traversal(self, root):
         res = []
@@ -39,7 +40,15 @@ class BST:
         pass
 
     def search(self, value):    # type of value?
-        pass
+        node = self._head
+        while node:
+            if node.data.get_value() == value:
+                return node
+            if node.data.get_value() > value:
+                node = node.left
+            else:
+                node = node.right
+        raise Exception("Element not found.")
 
     def insert(self, krone: Krone):
         if not self._head:
@@ -71,15 +80,14 @@ class BST:
         self.print(root.left)
         self.print(root.right)
 
-
     def count(self):
-        pass
+        return self._count
 
     def is_empty(self):
         return not bool(self._count)
 
     def empty(self):
-        pass
+        self._head = None
 
     def get_head(self):
         return self._head
