@@ -130,19 +130,17 @@ class BST:
             if node not in visited:
                 visited.add(node)
                 res.append(node.get_data().get_value())
-            if node.left != None:
+            if node.left is not None:
                 queue.enqueue(node.left)
-            if node.right != None:
+            if node.right is not None:
                 queue.enqueue(node.right)
         return res
-
-
 
 
     def search(self, value):
         """Returns the node that has value same as the given value
 
-        pre: value - float
+        pre: value - floating point object
         post:
         return: a node that has given value as value
 
@@ -229,7 +227,52 @@ class BST:
                     search = False
 
     def delete(self, value):
-        pass
+        """Removes a node from the tree by its value
+
+        pre: value - floating point object
+        post:
+        return:
+        """
+        par = None
+        cur = self._head
+        while cur:
+            if cur.data.get_value() == value:
+                if not cur.left and not cur.right:
+                    if not par:
+                        self.empty()
+                    elif par.left == cur:
+                        par.left = None
+                    else:
+                        par.right = None
+                elif not cur.right:
+                    if not par:
+                        self._head = cur.left
+                    elif par.left == cur:
+                        par.left = cur.left
+                    else:
+                        par.right = cur.left
+                elif not cur.left:
+                    if not par:
+                        self._head = cur.right
+                    elif par.left == cur:
+                        par.left = cur.right
+                    else:
+                        par.right = cur.right
+                else:
+                    suc = cur.right
+                    while suc.left:
+                        suc = suc.left
+                    suc_data = suc.data
+                    self.delete(suc_data.get_value())
+                    cur.set_data(suc_data)
+                return
+            elif cur.data.get_value() < value:
+                par = cur
+                cur = cur.right
+            else:
+                par = cur
+                cur = cur.left
+        return
 
     def print(self, root):
         """Prints the BST
