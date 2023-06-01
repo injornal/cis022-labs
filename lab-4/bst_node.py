@@ -1,3 +1,9 @@
+"""
+LAB 4
+Kostiantyn Babich, Hyunjong Shin
+This assignment is to make a binary search tree and operate traversal methods and other operations
+"""
+
 class BSTNode:
     def __init__(self, data):
         self.data = data    # data will be Krone object

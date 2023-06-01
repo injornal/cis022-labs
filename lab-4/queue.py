@@ -1,7 +1,7 @@
 """
 LAB 4
 Kostiantyn Babich, Hyunjong Shin
-This assignment is to make singly linked list to make stack and queue.
+This assignment is to make a binary search tree and operate traversal methods and other operations
 """
 
 from singly_linked_list import SinglyLinkedList

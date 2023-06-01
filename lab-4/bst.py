@@ -1,3 +1,9 @@
+"""
+LAB 4
+Kostiantyn Babich, Hyunjong Shin
+This assignment is to make a binary search tree and operate traversal methods and other operations
+"""
+
 from bst_node import BSTNode
 from krone import Krone
 from queue import Queue
@@ -19,6 +25,16 @@ class BST:
         pre: root - a root node
         post:
         return: a list in which preordered nodes exist
+
+        Algorithm preorder_traversal ( root )
+            result = blank list
+            if root is not None
+                append root->data->value to result
+                recursion on root's left node
+                recursion on root's right node
+            end if
+            return result
+        end preorder_traversal
         """
         res = []
         if root:
@@ -33,6 +49,16 @@ class BST:
         pre: root - a root node
         post:
         return: a list in which postordered nodes exist
+
+        Algorithm postorder_traversal ( root )
+            result = blank list
+            if root is not None
+                recursion on root's left node
+                recursion on root's right node
+                append root->data->value to result
+            end if
+            return result
+        end postorder_traversal
         """
         res = []
         if root:
@@ -47,6 +73,16 @@ class BST:
         pre: root - a root node
         post:
         return: a list in which inordered nodes exist
+        
+        Algorithm inorder_traversal ( root )
+            result = blank list
+            if root is not None
+                recursion on root's left node
+                append root->data->value to result
+                recursion on root's right node
+            end if
+            return result
+        end inorder_traversal
         """
         res = []
         if root:
@@ -61,6 +97,28 @@ class BST:
         pre: root - a root node
         post:
         return: a list in breadth first sequence
+
+        Algorithm breadth_first_traversal ( root )
+            visited = blank set
+            queue = Queue
+            result = blank list
+            enqueue root
+
+            while queue is not empty
+                node = dequeue
+                if node is not in visited
+                    add node to visited
+                    append node->data->value to result
+                end if
+                if node->left is not None
+                    enqueue node->left
+                end if
+                if node->right is not None
+                    enqueue node->right
+                end if
+            end while
+            return result
+        end breadth_first_traversal
         """
         visited = set()
         queue = Queue()
@@ -81,12 +139,34 @@ class BST:
 
 
 
-    def search(self, value):    # type of value?
+    def search(self, value):
+        """Returns the node that has value same as the given value
+
+        pre: value - float
+        post:
+        return: a node that has given value as value
+
+        Algorithm search ( value )
+            node = root node
+            while node is not None
+                if node->data->value is value
+                    return node
+                end if
+                if node->data->value is larger than value
+                    node = node->left
+                end if
+                if node->data->value is smaller than value
+                    node = node->right
+                end if
+            end while
+            throw exception "Element not found"
+        end search
+        """
         node = self._head
         while node:
-            if node.data.get_value() == value:
+            if node.get_data().get_value() == value:
                 return node
-            if node.data.get_value() > value:
+            if node.get_data().get_value() > value:
                 node = node.left
             else:
                 node = node.right
@@ -98,14 +178,44 @@ class BST:
         pre: krone - Krone object
         post:
         return:
+
+        Algorithm insert ( krone )
+            increment _count
+            if BST is empty
+                root node = BSTNode(krone)
+                return
+            end if
+            node = root node
+            search = True
+            while search is True
+                if krone->value is smaller than node->data->value
+                    if node->left exists
+                        node = node->left
+                    end if
+                    else
+                        node->left = BSTNode(krone)
+                        search = False
+                    end else
+                else
+                    if node->right exists
+                        node = node->right
+                    end if
+                    else
+                        node->right = BSTNode(krone)
+                        search = False
+                    end else
+                end else
+            end while
+        end insert
         """
+        self._count += 1
         if not self._head:
             self._head = BSTNode(data=krone)
             return
         node = self._head
         search = True
         while search:
-            if node.data.get_value() > krone.get_value():
+            if node.get_data().get_value() > krone.get_value():
                 if node.left:
                     node = node.left
                 else:
@@ -127,6 +237,15 @@ class BST:
         pre: root - a root node
         post: object's value and name
         return:
+
+        Algorithm print ( root )
+            if BST is empty
+                return
+            end if
+            print root->data
+            recursion on root's left node
+            recursion on root's right node
+        end print
         """
         if root is None:
             return
@@ -135,6 +254,16 @@ class BST:
         self.print(root.right)
 
     def count(self):
+        """Returns the number of nodes in BST
+
+        pre:
+        post:
+        return: number of nodes in BST
+
+        Algorithm count (  )
+            return count
+        end count
+        """
         return self._count
 
     def is_empty(self):
@@ -143,10 +272,27 @@ class BST:
         pre:
         post:
         return: boolean
+
+        Algorithm is_empty (  )
+            if BST is empty
+                return True
+            end if 
+            return False
+        end is_empty
         """
         return not bool(self._count)
 
     def empty(self):
+        """Empty the BST
+
+        pre:
+        post:
+        return:
+
+        Algorithm empty (  )
+            set root node to None
+        end empty
+        """
         self._head = None
 
     def get_head(self):
@@ -155,5 +301,9 @@ class BST:
         pre:
         post:
         return: a root node
+
+        Algorithm get_head (  )
+            return root node
+        end get_head
         """
         return self._head

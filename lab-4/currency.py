@@ -1,7 +1,7 @@
 """
 LAB 4
 Kostiantyn Babich, Hyunjong Shin
-This assignment is to make a base class and derived classes and use them to perform several operations
+This assignment is to make a binary search tree and operate traversal methods and other operations
 """
 
 """
