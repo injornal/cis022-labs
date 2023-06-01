@@ -79,6 +79,12 @@ class BST:
         return res
 
     def search(self, value):
+        """Returns the node by its value
+
+        pre: value - floating point object
+        post:
+        return: BSTNode object
+        """
         node = self._head
         while node:
             if node.data.get_value() == value:
@@ -116,6 +122,12 @@ class BST:
                     search = False
 
     def delete(self, value):
+        """Removes a node from the tree by its value
+
+        pre: value - floating point object
+        post:
+        return:
+        """
         par = None
         cur = self._head
         while cur:
