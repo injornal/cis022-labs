@@ -1,5 +1,6 @@
 from bst_node import BSTNode
 from krone import Krone
+from queue import Queue
 
 
 class BST:
@@ -12,6 +13,12 @@ class BST:
             self._head = BSTNode(value)
 
     def preorder_traversal(self, root):
+        """Returns the list in which preordered nodes exist
+
+        pre: root - a root node
+        post:
+        return: a list in which preordered nodes exist
+        """
         res = []
         if root:
             res.append(root.get_data().get_value())
@@ -20,6 +27,12 @@ class BST:
         return res
 
     def postorder_traversal(self, root):
+        """Returns the list in which postordered nodes exist
+
+        pre: root - a root node
+        post:
+        return: a list in which postordered nodes exist
+        """
         res = []
         if root:
             res = self.postorder_traversal(root.left)
@@ -28,6 +41,12 @@ class BST:
         return res
 
     def inorder_traversal(self, root):
+        """Returns the list in which inordered nodes exist
+
+        pre: root - a root node
+        post:
+        return: a list in which inordered nodes exist
+        """
         res = []
         if root:
             res = self.inorder_traversal(root.left)
@@ -36,12 +55,41 @@ class BST:
         return res
 
     def breadth_first_traversal(self, root):
-        pass
+        """Returns the list in breadth first sequence
+
+        pre: root - a root node
+        post:
+        return: a list in breadth first sequence
+        """
+        visited = set()
+        queue = Queue()
+        res = []
+        queue.enqueue(root)
+
+        while not queue.is_list_empty():
+            node = queue.dequeue()
+            if node not in visited:
+                visited.add(node)
+                res.append(node.get_data().get_value())
+            if node.left != None:
+                queue.enqueue(node.left)
+            if node.right != None:
+                queue.enqueue(node.right)
+        return res
+
+
+
 
     def search(self, value):    # type of value?
         pass
 
     def insert(self, krone: Krone):
+        """Inserts BSTNode with Krone object in BST
+
+        pre: krone - Krone object
+        post:
+        return:
+        """
         if not self._head:
             self._head = BSTNode(data=krone)
             return
@@ -65,6 +113,12 @@ class BST:
         pass
 
     def print(self, root):
+        """Prints the BST
+
+        pre: root - a root node
+        post: object's value and name
+        return:
+        """
         if root is None:
             return
         root.get_data().print()
@@ -76,10 +130,22 @@ class BST:
         pass
 
     def is_empty(self):
+        """Checks if BST is empty
+
+        pre:
+        post:
+        return: boolean
+        """
         return not bool(self._count)
 
     def empty(self):
         pass
 
     def get_head(self):
+        """Returns the root node
+
+        pre:
+        post:
+        return: a root node
+        """
         return self._head
