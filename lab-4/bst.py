@@ -81,7 +81,7 @@ class BST:
 
 
 
-    def search(self, value):    # type of value?
+    def search(self, value):  # type of value?
         node = self._head
         while node:
             if node.data.get_value() == value:
@@ -119,7 +119,46 @@ class BST:
                     search = False
 
     def delete(self, value):
-        pass
+        par = None
+        cur = self._head
+        while cur:
+            if cur.data.get_value() == value:
+                if not cur.left and not cur.right:
+                    if not par:
+                        self.empty()
+                    elif par.left == cur:
+                        par.left = None
+                    else:
+                        par.right = None
+                elif not cur.right:
+                    if not par:
+                        self._head = cur.left
+                    elif par.left == cur:
+                        par.left = cur.left
+                    else:
+                        par.right = cur.left
+                elif not cur.lefte:
+                    if not par:
+                        par = cur.right
+                    elif par.left == cur:
+                        par.left = cur.right
+                    else:
+                        par.right = cur.right
+                else:
+                    suc = cur.right
+                    while suc.left:
+                        suc = suc.left
+                    suc_data = suc.data
+                    self.delete(suc_data.get_value())
+                    cur.set_data(suc_data)
+                return
+            elif cur.data.get_value() < value:
+                par = cur
+                cur = cur.right
+            else:
+                par = cur
+                cur = cur.left
+        return
 
     def print(self, root):
         """Prints the BST
