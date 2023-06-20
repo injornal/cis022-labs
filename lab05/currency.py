@@ -1,7 +1,7 @@
 """
-LAB 4
+LAB 5
 Kostiantyn Babich, Hyunjong Shin
-This assignment is to make a binary search tree and operate traversal methods and other operations
+This assignment is to make a hash table and operate search methods
 """
 
 """
