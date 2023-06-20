@@ -75,7 +75,9 @@ class HashTable:
         index = self.hash_function(key)
         new_index = index
         while i < 29:
-            if self.buckets[new_index] == krone_object:
+            if type(self.buckets[new_index]) == list:
+                return None
+            if self.buckets[new_index].get_value() == krone_object.get_value():
                 return new_index
             new_index = (index + i * i) % self.size
             i += 1
@@ -106,3 +108,4 @@ class HashTable:
                 print(f"{a}, ", end="")
             else:
                 a.print()
+                print(", ", end="")

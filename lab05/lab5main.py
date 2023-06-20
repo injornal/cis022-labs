@@ -17,6 +17,7 @@ for krone in krone_array:
     a.insert(krone)
 
 a.print()
+print()
 print("The number of data items loaded:", a.get_number_of_element())
 print("Load Factor:", a.get_load_factor())
 print("Number of Collisions:", a.get_collision_count())
