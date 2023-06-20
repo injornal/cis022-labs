@@ -31,6 +31,8 @@ class HashTable:
             self.collisions += 1
             i += 1
         self.buckets[new_index] = krone_object
+        if self.get_load_factor() >= 0.75:
+            self.resize()
 
     def get_load_factor(self):
         return self.get_number_of_element() / self.num_buckets
