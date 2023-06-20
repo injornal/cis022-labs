@@ -4,6 +4,8 @@ Kostiantyn Babich, Hyunjong Shin
 This assignment is to make a hash table and operate search methods
 """
 
+
+
 class HashTable:
     def __init__(self, num_buckets=29) -> None:
         self.num_buckets = num_buckets
@@ -26,10 +28,29 @@ class HashTable:
         i = 1
         index = self.hash_function(key)
         new_index = index
-        while (i < 29) and type(self.buckets[new_index]) != list:
+        cycles = 0
+        prev_idx = None
+        not_cyclic = True
+        while (i < 29) and type(self.buckets[new_index]) != list and not_cyclic:
             new_index = (index + i * i) % self.size
             self.collisions += 1
             i += 1
+            
+            # cycling 
+            if prev_idx == new_index:
+                cycles += 1
+            else: 
+                cycles = 0
+
+            if cycles == 2:
+                self.resize()
+                self.insert(krone_object)
+                return
+            
+            prev_idx = new_index
+            
+            
+
         self.buckets[new_index] = krone_object
         if self.get_load_factor() >= 0.75:
             self.resize()
